@@ -1,0 +1,64 @@
+server:
+  ssl:
+    key-store: classpath:java.keystore
+    key-store-password: javajava
+    key-store-type: jks
+    key-alias: java
+
+spring:
+  datasource:
+    dynamic:
+      hikari:
+        connection-test-query: select 1
+        idle-timeout: 10000
+        max-pool-size: 20
+        min-idle: 10
+        connection-timeout: 30000
+      strict: false
+      primary: master
+      datasource:
+        master:
+          type: com.zaxxer.hikari.HikariDataSource
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          url: jdbc:mysql://xxx:3306/${spring.application.name}?autoReconnect=true&allowMultiQueries=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai&zeroDateTimeBehavior=convertToNull
+          username: xxx
+          password: xxx
+        slave:
+          type: com.zaxxer.hikari.HikariDataSource
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          url: jdbc:mysql://xxx:3306/${spring.application.name}?autoReconnect=true&allowMultiQueries=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai&zeroDateTimeBehavior=convertToNull
+          username: xxx
+          password: xxx
+  redis:
+    host-name: xxx
+    database: 5
+    port: 6379
+    timeout: 5000 #连接超时时间
+    password: xxx
+    jedis:
+      pool:
+        max-idle: 20
+        min-idle: 1
+  scheduling:
+    enable: true
+
+logging:
+  config: classpath:log/logback-boot.xml
+  file:
+    path: /home/logs
+    name: ${spring.application.name}
+  level:
+    com.shitouren.core: debug
+    com.shitouren.core.autogenerate.dao: debug
+    com.shitouren.core.mp: debug
+
+meta:
+  pi:
+    server-access-key: ''
+
+pay:
+  channel:
+    domain:
+    address-url: ${pay.channel.domain}/address?amount=
+    create-url: ${pay.channel.domain}/created?search_db=history
+    query-url: ${pay.channel.domain}/query?search_db=history&query_key=id&query_type=first&query_value=

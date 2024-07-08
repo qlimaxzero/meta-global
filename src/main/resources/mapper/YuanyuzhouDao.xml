@@ -1,0 +1,888 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shitouren.core.autogenerate.dao.YuanyuzhouDao">
+  <resultMap id="BaseResultMap" type="com.shitouren.core.autogenerate.bean.Yuanyuzhou">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="pid" jdbcType="INTEGER" property="pid" />
+    <result column="daxiao" jdbcType="VARCHAR" property="daxiao" />
+    <result column="x" jdbcType="INTEGER" property="x" />
+    <result column="y" jdbcType="INTEGER" property="y" />
+    <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="time" jdbcType="TIMESTAMP" property="time" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="url1" jdbcType="VARCHAR" property="url1" />
+    <result column="usergrantid" jdbcType="INTEGER" property="usergrantid" />
+    <result column="wangzhi" jdbcType="VARCHAR" property="wangzhi" />
+    <result column="is_goumai" jdbcType="INTEGER" property="isGoumai" />
+    <result column="jianjie" jdbcType="VARCHAR" property="jianjie" />
+    <result column="forwork" jdbcType="INTEGER" property="forwork" />
+    <result column="public_flag" jdbcType="INTEGER" property="publicFlag" />
+    <result column="overt" jdbcType="INTEGER" property="overt" />
+    <result column="collid" jdbcType="INTEGER" property="collid" />
+    <result column="bldg_grantid" jdbcType="INTEGER" property="bldgGrantid" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="public_name" jdbcType="VARCHAR" property="publicName" />
+    <result column="open" jdbcType="TINYINT" property="open" />
+    <result column="enter" jdbcType="TINYINT" property="enter" />
+    <result column="web_url" jdbcType="VARCHAR" property="webUrl" />
+    <result column="buy_price" jdbcType="VARCHAR" property="buyPrice" />
+    <result column="can_buy" jdbcType="TINYINT" property="canBuy" />
+    <result column="buy_time" jdbcType="TIMESTAMP" property="buyTime" />
+    <result column="expire_time" jdbcType="TIMESTAMP" property="expireTime" />
+    <result column="buy_price_jifen" jdbcType="VARCHAR" property="buyPriceJifen" />
+    <result column="land_name" jdbcType="VARCHAR" property="landName" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, pid, daxiao, x, y, nick_name, user_id, time, url, url1, usergrantid, wangzhi,
+    is_goumai, jianjie, forwork, public_flag, overt, collid, bldg_grantid, update_time,
+    public_name, `open`, enter, web_url, buy_price, can_buy, buy_time, expire_time, buy_price_jifen,
+    land_name
+  </sql>
+  <select id="selectByExample" parameterType="com.shitouren.core.autogenerate.bean.YuanyuzhouExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from yuanyuzhou
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="startRow != null">
+      limit #{startRow} , #{pageSize}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from yuanyuzhou
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from yuanyuzhou
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shitouren.core.autogenerate.bean.YuanyuzhouExample">
+    delete from yuanyuzhou
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.shitouren.core.autogenerate.bean.Yuanyuzhou" useGeneratedKeys="true">
+    insert into yuanyuzhou (pid, daxiao, x,
+      y, nick_name, user_id,
+      time, url, url1,
+      usergrantid, wangzhi, is_goumai,
+      jianjie, forwork, public_flag,
+      overt, collid, bldg_grantid,
+      update_time, public_name, `open`,
+      enter, web_url, buy_price,
+      can_buy, buy_time, expire_time,
+      buy_price_jifen, land_name)
+    values (#{pid,jdbcType=INTEGER}, #{daxiao,jdbcType=VARCHAR}, #{x,jdbcType=INTEGER},
+      #{y,jdbcType=INTEGER}, #{nickName,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER},
+      #{time,jdbcType=TIMESTAMP}, #{url,jdbcType=VARCHAR}, #{url1,jdbcType=VARCHAR},
+      #{usergrantid,jdbcType=INTEGER}, #{wangzhi,jdbcType=VARCHAR}, #{isGoumai,jdbcType=INTEGER},
+      #{jianjie,jdbcType=VARCHAR}, #{forwork,jdbcType=INTEGER}, #{publicFlag,jdbcType=INTEGER},
+      #{overt,jdbcType=INTEGER}, #{collid,jdbcType=INTEGER}, #{bldgGrantid,jdbcType=INTEGER},
+      #{updateTime,jdbcType=TIMESTAMP}, #{publicName,jdbcType=VARCHAR}, #{open,jdbcType=TINYINT},
+      #{enter,jdbcType=TINYINT}, #{webUrl,jdbcType=VARCHAR}, #{buyPrice,jdbcType=VARCHAR},
+      #{canBuy,jdbcType=TINYINT}, #{buyTime,jdbcType=TIMESTAMP}, #{expireTime,jdbcType=TIMESTAMP},
+      #{buyPriceJifen,jdbcType=VARCHAR}, #{landName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.shitouren.core.autogenerate.bean.Yuanyuzhou" useGeneratedKeys="true">
+    insert into yuanyuzhou
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="pid != null">
+        pid,
+      </if>
+      <if test="daxiao != null">
+        daxiao,
+      </if>
+      <if test="x != null">
+        x,
+      </if>
+      <if test="y != null">
+        y,
+      </if>
+      <if test="nickName != null">
+        nick_name,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="time != null">
+        time,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+      <if test="url1 != null">
+        url1,
+      </if>
+      <if test="usergrantid != null">
+        usergrantid,
+      </if>
+      <if test="wangzhi != null">
+        wangzhi,
+      </if>
+      <if test="isGoumai != null">
+        is_goumai,
+      </if>
+      <if test="jianjie != null">
+        jianjie,
+      </if>
+      <if test="forwork != null">
+        forwork,
+      </if>
+      <if test="publicFlag != null">
+        public_flag,
+      </if>
+      <if test="overt != null">
+        overt,
+      </if>
+      <if test="collid != null">
+        collid,
+      </if>
+      <if test="bldgGrantid != null">
+        bldg_grantid,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="publicName != null">
+        public_name,
+      </if>
+      <if test="open != null">
+        `open`,
+      </if>
+      <if test="enter != null">
+        enter,
+      </if>
+      <if test="webUrl != null">
+        web_url,
+      </if>
+      <if test="buyPrice != null">
+        buy_price,
+      </if>
+      <if test="canBuy != null">
+        can_buy,
+      </if>
+      <if test="buyTime != null">
+        buy_time,
+      </if>
+      <if test="expireTime != null">
+        expire_time,
+      </if>
+      <if test="buyPriceJifen != null">
+        buy_price_jifen,
+      </if>
+      <if test="landName != null">
+        land_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="pid != null">
+        #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="daxiao != null">
+        #{daxiao,jdbcType=VARCHAR},
+      </if>
+      <if test="x != null">
+        #{x,jdbcType=INTEGER},
+      </if>
+      <if test="y != null">
+        #{y,jdbcType=INTEGER},
+      </if>
+      <if test="nickName != null">
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="url1 != null">
+        #{url1,jdbcType=VARCHAR},
+      </if>
+      <if test="usergrantid != null">
+        #{usergrantid,jdbcType=INTEGER},
+      </if>
+      <if test="wangzhi != null">
+        #{wangzhi,jdbcType=VARCHAR},
+      </if>
+      <if test="isGoumai != null">
+        #{isGoumai,jdbcType=INTEGER},
+      </if>
+      <if test="jianjie != null">
+        #{jianjie,jdbcType=VARCHAR},
+      </if>
+      <if test="forwork != null">
+        #{forwork,jdbcType=INTEGER},
+      </if>
+      <if test="publicFlag != null">
+        #{publicFlag,jdbcType=INTEGER},
+      </if>
+      <if test="overt != null">
+        #{overt,jdbcType=INTEGER},
+      </if>
+      <if test="collid != null">
+        #{collid,jdbcType=INTEGER},
+      </if>
+      <if test="bldgGrantid != null">
+        #{bldgGrantid,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="publicName != null">
+        #{publicName,jdbcType=VARCHAR},
+      </if>
+      <if test="open != null">
+        #{open,jdbcType=TINYINT},
+      </if>
+      <if test="enter != null">
+        #{enter,jdbcType=TINYINT},
+      </if>
+      <if test="webUrl != null">
+        #{webUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="buyPrice != null">
+        #{buyPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="canBuy != null">
+        #{canBuy,jdbcType=TINYINT},
+      </if>
+      <if test="buyTime != null">
+        #{buyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expireTime != null">
+        #{expireTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="buyPriceJifen != null">
+        #{buyPriceJifen,jdbcType=VARCHAR},
+      </if>
+      <if test="landName != null">
+        #{landName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shitouren.core.autogenerate.bean.YuanyuzhouExample" resultType="java.lang.Long">
+    select count(*) from yuanyuzhou
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update yuanyuzhou
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.pid != null">
+        pid = #{record.pid,jdbcType=INTEGER},
+      </if>
+      <if test="record.daxiao != null">
+        daxiao = #{record.daxiao,jdbcType=VARCHAR},
+      </if>
+      <if test="record.x != null">
+        x = #{record.x,jdbcType=INTEGER},
+      </if>
+      <if test="record.y != null">
+        y = #{record.y,jdbcType=INTEGER},
+      </if>
+      <if test="record.nickName != null">
+        nick_name = #{record.nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userId != null">
+        user_id = #{record.userId,jdbcType=INTEGER},
+      </if>
+      <if test="record.time != null">
+        time = #{record.time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.url != null">
+        url = #{record.url,jdbcType=VARCHAR},
+      </if>
+      <if test="record.url1 != null">
+        url1 = #{record.url1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.usergrantid != null">
+        usergrantid = #{record.usergrantid,jdbcType=INTEGER},
+      </if>
+      <if test="record.wangzhi != null">
+        wangzhi = #{record.wangzhi,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isGoumai != null">
+        is_goumai = #{record.isGoumai,jdbcType=INTEGER},
+      </if>
+      <if test="record.jianjie != null">
+        jianjie = #{record.jianjie,jdbcType=VARCHAR},
+      </if>
+      <if test="record.forwork != null">
+        forwork = #{record.forwork,jdbcType=INTEGER},
+      </if>
+      <if test="record.publicFlag != null">
+        public_flag = #{record.publicFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.overt != null">
+        overt = #{record.overt,jdbcType=INTEGER},
+      </if>
+      <if test="record.collid != null">
+        collid = #{record.collid,jdbcType=INTEGER},
+      </if>
+      <if test="record.bldgGrantid != null">
+        bldg_grantid = #{record.bldgGrantid,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.publicName != null">
+        public_name = #{record.publicName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.open != null">
+        `open` = #{record.open,jdbcType=TINYINT},
+      </if>
+      <if test="record.enter != null">
+        enter = #{record.enter,jdbcType=TINYINT},
+      </if>
+      <if test="record.webUrl != null">
+        web_url = #{record.webUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buyPrice != null">
+        buy_price = #{record.buyPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="record.canBuy != null">
+        can_buy = #{record.canBuy,jdbcType=TINYINT},
+      </if>
+      <if test="record.buyTime != null">
+        buy_time = #{record.buyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.expireTime != null">
+        expire_time = #{record.expireTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.buyPriceJifen != null">
+        buy_price_jifen = #{record.buyPriceJifen,jdbcType=VARCHAR},
+      </if>
+      <if test="record.landName != null">
+        land_name = #{record.landName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update yuanyuzhou
+    set id = #{record.id,jdbcType=INTEGER},
+      pid = #{record.pid,jdbcType=INTEGER},
+      daxiao = #{record.daxiao,jdbcType=VARCHAR},
+      x = #{record.x,jdbcType=INTEGER},
+      y = #{record.y,jdbcType=INTEGER},
+      nick_name = #{record.nickName,jdbcType=VARCHAR},
+      user_id = #{record.userId,jdbcType=INTEGER},
+      time = #{record.time,jdbcType=TIMESTAMP},
+      url = #{record.url,jdbcType=VARCHAR},
+      url1 = #{record.url1,jdbcType=VARCHAR},
+      usergrantid = #{record.usergrantid,jdbcType=INTEGER},
+      wangzhi = #{record.wangzhi,jdbcType=VARCHAR},
+      is_goumai = #{record.isGoumai,jdbcType=INTEGER},
+      jianjie = #{record.jianjie,jdbcType=VARCHAR},
+      forwork = #{record.forwork,jdbcType=INTEGER},
+      public_flag = #{record.publicFlag,jdbcType=INTEGER},
+      overt = #{record.overt,jdbcType=INTEGER},
+      collid = #{record.collid,jdbcType=INTEGER},
+      bldg_grantid = #{record.bldgGrantid,jdbcType=INTEGER},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      public_name = #{record.publicName,jdbcType=VARCHAR},
+      `open` = #{record.open,jdbcType=TINYINT},
+      enter = #{record.enter,jdbcType=TINYINT},
+      web_url = #{record.webUrl,jdbcType=VARCHAR},
+      buy_price = #{record.buyPrice,jdbcType=VARCHAR},
+      can_buy = #{record.canBuy,jdbcType=TINYINT},
+      buy_time = #{record.buyTime,jdbcType=TIMESTAMP},
+      expire_time = #{record.expireTime,jdbcType=TIMESTAMP},
+      buy_price_jifen = #{record.buyPriceJifen,jdbcType=VARCHAR},
+      land_name = #{record.landName,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shitouren.core.autogenerate.bean.Yuanyuzhou">
+    update yuanyuzhou
+    <set>
+      <if test="pid != null">
+        pid = #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="daxiao != null">
+        daxiao = #{daxiao,jdbcType=VARCHAR},
+      </if>
+      <if test="x != null">
+        x = #{x,jdbcType=INTEGER},
+      </if>
+      <if test="y != null">
+        y = #{y,jdbcType=INTEGER},
+      </if>
+      <if test="nickName != null">
+        nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="time != null">
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="url1 != null">
+        url1 = #{url1,jdbcType=VARCHAR},
+      </if>
+      <if test="usergrantid != null">
+        usergrantid = #{usergrantid,jdbcType=INTEGER},
+      </if>
+      <if test="wangzhi != null">
+        wangzhi = #{wangzhi,jdbcType=VARCHAR},
+      </if>
+      <if test="isGoumai != null">
+        is_goumai = #{isGoumai,jdbcType=INTEGER},
+      </if>
+      <if test="jianjie != null">
+        jianjie = #{jianjie,jdbcType=VARCHAR},
+      </if>
+      <if test="forwork != null">
+        forwork = #{forwork,jdbcType=INTEGER},
+      </if>
+      <if test="publicFlag != null">
+        public_flag = #{publicFlag,jdbcType=INTEGER},
+      </if>
+      <if test="overt != null">
+        overt = #{overt,jdbcType=INTEGER},
+      </if>
+      <if test="collid != null">
+        collid = #{collid,jdbcType=INTEGER},
+      </if>
+      <if test="bldgGrantid != null">
+        bldg_grantid = #{bldgGrantid,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="publicName != null">
+        public_name = #{publicName,jdbcType=VARCHAR},
+      </if>
+      <if test="open != null">
+        `open` = #{open,jdbcType=TINYINT},
+      </if>
+      <if test="enter != null">
+        enter = #{enter,jdbcType=TINYINT},
+      </if>
+      <if test="webUrl != null">
+        web_url = #{webUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="buyPrice != null">
+        buy_price = #{buyPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="canBuy != null">
+        can_buy = #{canBuy,jdbcType=TINYINT},
+      </if>
+      <if test="buyTime != null">
+        buy_time = #{buyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expireTime != null">
+        expire_time = #{expireTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="buyPriceJifen != null">
+        buy_price_jifen = #{buyPriceJifen,jdbcType=VARCHAR},
+      </if>
+      <if test="landName != null">
+        land_name = #{landName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shitouren.core.autogenerate.bean.Yuanyuzhou">
+    update yuanyuzhou
+    set pid = #{pid,jdbcType=INTEGER},
+      daxiao = #{daxiao,jdbcType=VARCHAR},
+      x = #{x,jdbcType=INTEGER},
+      y = #{y,jdbcType=INTEGER},
+      nick_name = #{nickName,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=INTEGER},
+      time = #{time,jdbcType=TIMESTAMP},
+      url = #{url,jdbcType=VARCHAR},
+      url1 = #{url1,jdbcType=VARCHAR},
+      usergrantid = #{usergrantid,jdbcType=INTEGER},
+      wangzhi = #{wangzhi,jdbcType=VARCHAR},
+      is_goumai = #{isGoumai,jdbcType=INTEGER},
+      jianjie = #{jianjie,jdbcType=VARCHAR},
+      forwork = #{forwork,jdbcType=INTEGER},
+      public_flag = #{publicFlag,jdbcType=INTEGER},
+      overt = #{overt,jdbcType=INTEGER},
+      collid = #{collid,jdbcType=INTEGER},
+      bldg_grantid = #{bldgGrantid,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      public_name = #{publicName,jdbcType=VARCHAR},
+      `open` = #{open,jdbcType=TINYINT},
+      enter = #{enter,jdbcType=TINYINT},
+      web_url = #{webUrl,jdbcType=VARCHAR},
+      buy_price = #{buyPrice,jdbcType=VARCHAR},
+      can_buy = #{canBuy,jdbcType=TINYINT},
+      buy_time = #{buyTime,jdbcType=TIMESTAMP},
+      expire_time = #{expireTime,jdbcType=TIMESTAMP},
+      buy_price_jifen = #{buyPriceJifen,jdbcType=VARCHAR},
+      land_name = #{landName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <insert id="insertBatchSelective" parameterType="java.util.List">
+    insert into yuanyuzhou
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="list[0].id!=null">
+        id,
+      </if>
+      <if test="list[0].pid!=null">
+        pid,
+      </if>
+      <if test="list[0].daxiao!=null">
+        daxiao,
+      </if>
+      <if test="list[0].x!=null">
+        x,
+      </if>
+      <if test="list[0].y!=null">
+        y,
+      </if>
+      <if test="list[0].nickName!=null">
+        nick_name,
+      </if>
+      <if test="list[0].userId!=null">
+        user_id,
+      </if>
+      <if test="list[0].time!=null">
+        time,
+      </if>
+      <if test="list[0].url!=null">
+        url,
+      </if>
+      <if test="list[0].url1!=null">
+        url1,
+      </if>
+      <if test="list[0].usergrantid!=null">
+        usergrantid,
+      </if>
+      <if test="list[0].wangzhi!=null">
+        wangzhi,
+      </if>
+      <if test="list[0].isGoumai!=null">
+        is_goumai,
+      </if>
+      <if test="list[0].jianjie!=null">
+        jianjie,
+      </if>
+      <if test="list[0].forwork!=null">
+        forwork,
+      </if>
+      <if test="list[0].publicFlag!=null">
+        public_flag,
+      </if>
+      <if test="list[0].overt!=null">
+        overt,
+      </if>
+      <if test="list[0].collid!=null">
+        collid,
+      </if>
+      <if test="list[0].bldgGrantid!=null">
+        bldg_grantid,
+      </if>
+      <if test="list[0].updateTime!=null">
+        update_time,
+      </if>
+      <if test="list[0].publicName!=null">
+        public_name,
+      </if>
+      <if test="list[0].open!=null">
+        `open`,
+      </if>
+      <if test="list[0].enter!=null">
+        enter,
+      </if>
+      <if test="list[0].webUrl!=null">
+        web_url,
+      </if>
+      <if test="list[0].buyPrice!=null">
+        buy_price,
+      </if>
+      <if test="list[0].canBuy!=null">
+        can_buy,
+      </if>
+      <if test="list[0].buyTime!=null">
+        buy_time,
+      </if>
+      <if test="list[0].expireTime!=null">
+        expire_time,
+      </if>
+      <if test="list[0].buyPriceJifen!=null">
+        buy_price_jifen,
+      </if>
+      <if test="list[0].landName!=null">
+        land_name,
+      </if>
+    </trim>
+     values
+    <foreach collection="list" index="index" item="item" separator=",">
+      <trim prefix=" (" suffix=")" suffixOverrides=",">
+        <if test="item.id!=null">
+          #{item.id,jdbcType=INTEGER},
+        </if>
+        <if test="item.pid!=null">
+          #{item.pid,jdbcType=INTEGER},
+        </if>
+        <if test="item.daxiao!=null">
+          #{item.daxiao,jdbcType=VARCHAR},
+        </if>
+        <if test="item.x!=null">
+          #{item.x,jdbcType=INTEGER},
+        </if>
+        <if test="item.y!=null">
+          #{item.y,jdbcType=INTEGER},
+        </if>
+        <if test="item.nickName!=null">
+          #{item.nickName,jdbcType=VARCHAR},
+        </if>
+        <if test="item.userId!=null">
+          #{item.userId,jdbcType=INTEGER},
+        </if>
+        <if test="item.time!=null">
+          #{item.time,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.url!=null">
+          #{item.url,jdbcType=VARCHAR},
+        </if>
+        <if test="item.url1!=null">
+          #{item.url1,jdbcType=VARCHAR},
+        </if>
+        <if test="item.usergrantid!=null">
+          #{item.usergrantid,jdbcType=INTEGER},
+        </if>
+        <if test="item.wangzhi!=null">
+          #{item.wangzhi,jdbcType=VARCHAR},
+        </if>
+        <if test="item.isGoumai!=null">
+          #{item.isGoumai,jdbcType=INTEGER},
+        </if>
+        <if test="item.jianjie!=null">
+          #{item.jianjie,jdbcType=VARCHAR},
+        </if>
+        <if test="item.forwork!=null">
+          #{item.forwork,jdbcType=INTEGER},
+        </if>
+        <if test="item.publicFlag!=null">
+          #{item.publicFlag,jdbcType=INTEGER},
+        </if>
+        <if test="item.overt!=null">
+          #{item.overt,jdbcType=INTEGER},
+        </if>
+        <if test="item.collid!=null">
+          #{item.collid,jdbcType=INTEGER},
+        </if>
+        <if test="item.bldgGrantid!=null">
+          #{item.bldgGrantid,jdbcType=INTEGER},
+        </if>
+        <if test="item.updateTime!=null">
+          #{item.updateTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.publicName!=null">
+          #{item.publicName,jdbcType=VARCHAR},
+        </if>
+        <if test="item.open!=null">
+          #{item.open,jdbcType=TINYINT},
+        </if>
+        <if test="item.enter!=null">
+          #{item.enter,jdbcType=TINYINT},
+        </if>
+        <if test="item.webUrl!=null">
+          #{item.webUrl,jdbcType=VARCHAR},
+        </if>
+        <if test="item.buyPrice!=null">
+          #{item.buyPrice,jdbcType=VARCHAR},
+        </if>
+        <if test="item.canBuy!=null">
+          #{item.canBuy,jdbcType=TINYINT},
+        </if>
+        <if test="item.buyTime!=null">
+          #{item.buyTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.expireTime!=null">
+          #{item.expireTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.buyPriceJifen!=null">
+          #{item.buyPriceJifen,jdbcType=VARCHAR},
+        </if>
+        <if test="item.landName!=null">
+          #{item.landName,jdbcType=VARCHAR},
+        </if>
+      </trim>
+    </foreach>
+  </insert>
+  <update id="updateBatchByPrimaryKeySelective" parameterType="java.util.List">
+    <foreach collection="list" index="index" item="item" separator=";">
+      update yuanyuzhou
+      <set>
+        <if test="item.pid!=null">
+          pid=#{item.pid,jdbcType=INTEGER},
+        </if>
+        <if test="item.daxiao!=null">
+          daxiao=#{item.daxiao,jdbcType=VARCHAR},
+        </if>
+        <if test="item.x!=null">
+          x=#{item.x,jdbcType=INTEGER},
+        </if>
+        <if test="item.y!=null">
+          y=#{item.y,jdbcType=INTEGER},
+        </if>
+        <if test="item.nickName!=null">
+          nick_name=#{item.nickName,jdbcType=VARCHAR},
+        </if>
+        <if test="item.userId!=null">
+          user_id=#{item.userId,jdbcType=INTEGER},
+        </if>
+        <if test="item.time!=null">
+          time=#{item.time,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.url!=null">
+          url=#{item.url,jdbcType=VARCHAR},
+        </if>
+        <if test="item.url1!=null">
+          url1=#{item.url1,jdbcType=VARCHAR},
+        </if>
+        <if test="item.usergrantid!=null">
+          usergrantid=#{item.usergrantid,jdbcType=INTEGER},
+        </if>
+        <if test="item.wangzhi!=null">
+          wangzhi=#{item.wangzhi,jdbcType=VARCHAR},
+        </if>
+        <if test="item.isGoumai!=null">
+          is_goumai=#{item.isGoumai,jdbcType=INTEGER},
+        </if>
+        <if test="item.jianjie!=null">
+          jianjie=#{item.jianjie,jdbcType=VARCHAR},
+        </if>
+        <if test="item.forwork!=null">
+          forwork=#{item.forwork,jdbcType=INTEGER},
+        </if>
+        <if test="item.publicFlag!=null">
+          public_flag=#{item.publicFlag,jdbcType=INTEGER},
+        </if>
+        <if test="item.overt!=null">
+          overt=#{item.overt,jdbcType=INTEGER},
+        </if>
+        <if test="item.collid!=null">
+          collid=#{item.collid,jdbcType=INTEGER},
+        </if>
+        <if test="item.bldgGrantid!=null">
+          bldg_grantid=#{item.bldgGrantid,jdbcType=INTEGER},
+        </if>
+        <if test="item.updateTime!=null">
+          update_time=#{item.updateTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.publicName!=null">
+          public_name=#{item.publicName,jdbcType=VARCHAR},
+        </if>
+        <if test="item.open!=null">
+          `open`=#{item.open,jdbcType=TINYINT},
+        </if>
+        <if test="item.enter!=null">
+          enter=#{item.enter,jdbcType=TINYINT},
+        </if>
+        <if test="item.webUrl!=null">
+          web_url=#{item.webUrl,jdbcType=VARCHAR},
+        </if>
+        <if test="item.buyPrice!=null">
+          buy_price=#{item.buyPrice,jdbcType=VARCHAR},
+        </if>
+        <if test="item.canBuy!=null">
+          can_buy=#{item.canBuy,jdbcType=TINYINT},
+        </if>
+        <if test="item.buyTime!=null">
+          buy_time=#{item.buyTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.expireTime!=null">
+          expire_time=#{item.expireTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.buyPriceJifen!=null">
+          buy_price_jifen=#{item.buyPriceJifen,jdbcType=VARCHAR},
+        </if>
+        <if test="item.landName!=null">
+          land_name=#{item.landName,jdbcType=VARCHAR},
+        </if>
+      </set>
+      where
+      id = #{item.id,jdbcType=INTEGER}
+    </foreach>
+  </update>
+</mapper>

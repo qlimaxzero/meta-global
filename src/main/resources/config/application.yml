@@ -1,0 +1,65 @@
+server:
+  compression:
+    enabled: true
+    mime-types: application/json,application/xml,text/html,text/xml,text/plain
+  undertow:
+    io-threads: 16
+    worker-threads: 128
+    buffer-size: 16384
+
+  port: 8300
+#  ssl:
+#    key-store: classpath:java.keystore
+#    key-store-password: javajava
+#    key-store-type: jks
+#    key-alias: java
+spring:
+  application:
+    name: meta-global
+  profiles:
+    active: test
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    default-fetch-size: 100
+    default-statement-timeout: 30
+  global-config:
+    db-config:
+      id-type: auto
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
+#阿里云 OSS（配置bucket信息）
+aliyun:
+  oss:
+    file:
+      endpoint: "" #地域节点
+      accessKeyID: ""
+      accessKeySecret: "" #秘钥
+      bucketName: ""
+
+meta:
+  pi:
+    domain: https://api.minepi.com
+    auth-url: ${meta.pi.domain}/v2/me
+    payment-info-url: ${meta.pi.domain}/v2/payments/{paymentId}
+    payment-approve-url: ${meta.pi.domain}/v2/payments/{paymentId}/approve
+    payment-complete-url: ${meta.pi.domain}/v2/payments/{paymentId}/complete
+  sse:
+    domain:
+    create-url: ${meta.sse.domain}/api/v1/create_chat
+    stream-url: ${meta.sse.domain}/api/v1/stream_chat
+  mail:
+    port: 25
+    auth: true
+    host: smtp.metaaib.com
+    ssl-enable: false
+    accounts:
+      - from:
+        pass:

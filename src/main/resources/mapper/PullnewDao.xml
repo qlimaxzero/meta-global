@@ -1,0 +1,642 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shitouren.core.autogenerate.dao.PullnewDao">
+  <resultMap id="BaseResultMap" type="com.shitouren.core.autogenerate.bean.Pullnew">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="openactivity" jdbcType="INTEGER" property="openactivity" />
+    <result column="openactivitycreattime" jdbcType="TIMESTAMP" property="openactivitycreattime" />
+    <result column="openactivityendtime" jdbcType="TIMESTAMP" property="openactivityendtime" />
+    <result column="openblind" jdbcType="INTEGER" property="openblind" />
+    <result column="blindboxid" jdbcType="INTEGER" property="blindboxid" />
+    <result column="realnameblind" jdbcType="INTEGER" property="realnameblind" />
+    <result column="ladderinfo" jdbcType="VARCHAR" property="ladderinfo" />
+    <result column="opencollection" jdbcType="INTEGER" property="opencollection" />
+    <result column="collectionid" jdbcType="INTEGER" property="collectionid" />
+    <result column="realnamecollection" jdbcType="INTEGER" property="realnamecollection" />
+    <result column="colLadderinfo" jdbcType="VARCHAR" property="colladderinfo" />
+    <result column="newsend" jdbcType="INTEGER" property="newsend" />
+    <result column="isrealname" jdbcType="INTEGER" property="isrealname" />
+    <result column="isendblind" jdbcType="INTEGER" property="isendblind" />
+    <result column="newblindid" jdbcType="INTEGER" property="newblindid" />
+    <result column="isendcol" jdbcType="INTEGER" property="isendcol" />
+    <result column="newcollectionid" jdbcType="INTEGER" property="newcollectionid" />
+    <result column="isnumber" jdbcType="INTEGER" property="isnumber" />
+    <result column="number" jdbcType="INTEGER" property="number" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, openactivity, openactivitycreattime, openactivityendtime, openblind, blindboxid, 
+    realnameblind, ladderinfo, opencollection, collectionid, realnamecollection, colLadderinfo, 
+    newsend, isrealname, isendblind, newblindid, isendcol, newcollectionid, isnumber, 
+    number
+  </sql>
+  <select id="selectByExample" parameterType="com.shitouren.core.autogenerate.bean.PullnewExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from pullnew
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="startRow != null">
+      limit #{startRow} , #{pageSize}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pullnew
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from pullnew
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shitouren.core.autogenerate.bean.PullnewExample">
+    delete from pullnew
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.shitouren.core.autogenerate.bean.Pullnew" useGeneratedKeys="true">
+    insert into pullnew (openactivity, openactivitycreattime, 
+      openactivityendtime, openblind, blindboxid, 
+      realnameblind, ladderinfo, opencollection, 
+      collectionid, realnamecollection, colLadderinfo, 
+      newsend, isrealname, isendblind, 
+      newblindid, isendcol, newcollectionid, 
+      isnumber, number)
+    values (#{openactivity,jdbcType=INTEGER}, #{openactivitycreattime,jdbcType=TIMESTAMP}, 
+      #{openactivityendtime,jdbcType=TIMESTAMP}, #{openblind,jdbcType=INTEGER}, #{blindboxid,jdbcType=INTEGER}, 
+      #{realnameblind,jdbcType=INTEGER}, #{ladderinfo,jdbcType=VARCHAR}, #{opencollection,jdbcType=INTEGER}, 
+      #{collectionid,jdbcType=INTEGER}, #{realnamecollection,jdbcType=INTEGER}, #{colladderinfo,jdbcType=VARCHAR}, 
+      #{newsend,jdbcType=INTEGER}, #{isrealname,jdbcType=INTEGER}, #{isendblind,jdbcType=INTEGER}, 
+      #{newblindid,jdbcType=INTEGER}, #{isendcol,jdbcType=INTEGER}, #{newcollectionid,jdbcType=INTEGER}, 
+      #{isnumber,jdbcType=INTEGER}, #{number,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.shitouren.core.autogenerate.bean.Pullnew" useGeneratedKeys="true">
+    insert into pullnew
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="openactivity != null">
+        openactivity,
+      </if>
+      <if test="openactivitycreattime != null">
+        openactivitycreattime,
+      </if>
+      <if test="openactivityendtime != null">
+        openactivityendtime,
+      </if>
+      <if test="openblind != null">
+        openblind,
+      </if>
+      <if test="blindboxid != null">
+        blindboxid,
+      </if>
+      <if test="realnameblind != null">
+        realnameblind,
+      </if>
+      <if test="ladderinfo != null">
+        ladderinfo,
+      </if>
+      <if test="opencollection != null">
+        opencollection,
+      </if>
+      <if test="collectionid != null">
+        collectionid,
+      </if>
+      <if test="realnamecollection != null">
+        realnamecollection,
+      </if>
+      <if test="colladderinfo != null">
+        colLadderinfo,
+      </if>
+      <if test="newsend != null">
+        newsend,
+      </if>
+      <if test="isrealname != null">
+        isrealname,
+      </if>
+      <if test="isendblind != null">
+        isendblind,
+      </if>
+      <if test="newblindid != null">
+        newblindid,
+      </if>
+      <if test="isendcol != null">
+        isendcol,
+      </if>
+      <if test="newcollectionid != null">
+        newcollectionid,
+      </if>
+      <if test="isnumber != null">
+        isnumber,
+      </if>
+      <if test="number != null">
+        number,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="openactivity != null">
+        #{openactivity,jdbcType=INTEGER},
+      </if>
+      <if test="openactivitycreattime != null">
+        #{openactivitycreattime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="openactivityendtime != null">
+        #{openactivityendtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="openblind != null">
+        #{openblind,jdbcType=INTEGER},
+      </if>
+      <if test="blindboxid != null">
+        #{blindboxid,jdbcType=INTEGER},
+      </if>
+      <if test="realnameblind != null">
+        #{realnameblind,jdbcType=INTEGER},
+      </if>
+      <if test="ladderinfo != null">
+        #{ladderinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="opencollection != null">
+        #{opencollection,jdbcType=INTEGER},
+      </if>
+      <if test="collectionid != null">
+        #{collectionid,jdbcType=INTEGER},
+      </if>
+      <if test="realnamecollection != null">
+        #{realnamecollection,jdbcType=INTEGER},
+      </if>
+      <if test="colladderinfo != null">
+        #{colladderinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="newsend != null">
+        #{newsend,jdbcType=INTEGER},
+      </if>
+      <if test="isrealname != null">
+        #{isrealname,jdbcType=INTEGER},
+      </if>
+      <if test="isendblind != null">
+        #{isendblind,jdbcType=INTEGER},
+      </if>
+      <if test="newblindid != null">
+        #{newblindid,jdbcType=INTEGER},
+      </if>
+      <if test="isendcol != null">
+        #{isendcol,jdbcType=INTEGER},
+      </if>
+      <if test="newcollectionid != null">
+        #{newcollectionid,jdbcType=INTEGER},
+      </if>
+      <if test="isnumber != null">
+        #{isnumber,jdbcType=INTEGER},
+      </if>
+      <if test="number != null">
+        #{number,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shitouren.core.autogenerate.bean.PullnewExample" resultType="java.lang.Long">
+    select count(*) from pullnew
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update pullnew
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.openactivity != null">
+        openactivity = #{record.openactivity,jdbcType=INTEGER},
+      </if>
+      <if test="record.openactivitycreattime != null">
+        openactivitycreattime = #{record.openactivitycreattime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.openactivityendtime != null">
+        openactivityendtime = #{record.openactivityendtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.openblind != null">
+        openblind = #{record.openblind,jdbcType=INTEGER},
+      </if>
+      <if test="record.blindboxid != null">
+        blindboxid = #{record.blindboxid,jdbcType=INTEGER},
+      </if>
+      <if test="record.realnameblind != null">
+        realnameblind = #{record.realnameblind,jdbcType=INTEGER},
+      </if>
+      <if test="record.ladderinfo != null">
+        ladderinfo = #{record.ladderinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.opencollection != null">
+        opencollection = #{record.opencollection,jdbcType=INTEGER},
+      </if>
+      <if test="record.collectionid != null">
+        collectionid = #{record.collectionid,jdbcType=INTEGER},
+      </if>
+      <if test="record.realnamecollection != null">
+        realnamecollection = #{record.realnamecollection,jdbcType=INTEGER},
+      </if>
+      <if test="record.colladderinfo != null">
+        colLadderinfo = #{record.colladderinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.newsend != null">
+        newsend = #{record.newsend,jdbcType=INTEGER},
+      </if>
+      <if test="record.isrealname != null">
+        isrealname = #{record.isrealname,jdbcType=INTEGER},
+      </if>
+      <if test="record.isendblind != null">
+        isendblind = #{record.isendblind,jdbcType=INTEGER},
+      </if>
+      <if test="record.newblindid != null">
+        newblindid = #{record.newblindid,jdbcType=INTEGER},
+      </if>
+      <if test="record.isendcol != null">
+        isendcol = #{record.isendcol,jdbcType=INTEGER},
+      </if>
+      <if test="record.newcollectionid != null">
+        newcollectionid = #{record.newcollectionid,jdbcType=INTEGER},
+      </if>
+      <if test="record.isnumber != null">
+        isnumber = #{record.isnumber,jdbcType=INTEGER},
+      </if>
+      <if test="record.number != null">
+        number = #{record.number,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update pullnew
+    set id = #{record.id,jdbcType=INTEGER},
+      openactivity = #{record.openactivity,jdbcType=INTEGER},
+      openactivitycreattime = #{record.openactivitycreattime,jdbcType=TIMESTAMP},
+      openactivityendtime = #{record.openactivityendtime,jdbcType=TIMESTAMP},
+      openblind = #{record.openblind,jdbcType=INTEGER},
+      blindboxid = #{record.blindboxid,jdbcType=INTEGER},
+      realnameblind = #{record.realnameblind,jdbcType=INTEGER},
+      ladderinfo = #{record.ladderinfo,jdbcType=VARCHAR},
+      opencollection = #{record.opencollection,jdbcType=INTEGER},
+      collectionid = #{record.collectionid,jdbcType=INTEGER},
+      realnamecollection = #{record.realnamecollection,jdbcType=INTEGER},
+      colLadderinfo = #{record.colladderinfo,jdbcType=VARCHAR},
+      newsend = #{record.newsend,jdbcType=INTEGER},
+      isrealname = #{record.isrealname,jdbcType=INTEGER},
+      isendblind = #{record.isendblind,jdbcType=INTEGER},
+      newblindid = #{record.newblindid,jdbcType=INTEGER},
+      isendcol = #{record.isendcol,jdbcType=INTEGER},
+      newcollectionid = #{record.newcollectionid,jdbcType=INTEGER},
+      isnumber = #{record.isnumber,jdbcType=INTEGER},
+      number = #{record.number,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shitouren.core.autogenerate.bean.Pullnew">
+    update pullnew
+    <set>
+      <if test="openactivity != null">
+        openactivity = #{openactivity,jdbcType=INTEGER},
+      </if>
+      <if test="openactivitycreattime != null">
+        openactivitycreattime = #{openactivitycreattime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="openactivityendtime != null">
+        openactivityendtime = #{openactivityendtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="openblind != null">
+        openblind = #{openblind,jdbcType=INTEGER},
+      </if>
+      <if test="blindboxid != null">
+        blindboxid = #{blindboxid,jdbcType=INTEGER},
+      </if>
+      <if test="realnameblind != null">
+        realnameblind = #{realnameblind,jdbcType=INTEGER},
+      </if>
+      <if test="ladderinfo != null">
+        ladderinfo = #{ladderinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="opencollection != null">
+        opencollection = #{opencollection,jdbcType=INTEGER},
+      </if>
+      <if test="collectionid != null">
+        collectionid = #{collectionid,jdbcType=INTEGER},
+      </if>
+      <if test="realnamecollection != null">
+        realnamecollection = #{realnamecollection,jdbcType=INTEGER},
+      </if>
+      <if test="colladderinfo != null">
+        colLadderinfo = #{colladderinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="newsend != null">
+        newsend = #{newsend,jdbcType=INTEGER},
+      </if>
+      <if test="isrealname != null">
+        isrealname = #{isrealname,jdbcType=INTEGER},
+      </if>
+      <if test="isendblind != null">
+        isendblind = #{isendblind,jdbcType=INTEGER},
+      </if>
+      <if test="newblindid != null">
+        newblindid = #{newblindid,jdbcType=INTEGER},
+      </if>
+      <if test="isendcol != null">
+        isendcol = #{isendcol,jdbcType=INTEGER},
+      </if>
+      <if test="newcollectionid != null">
+        newcollectionid = #{newcollectionid,jdbcType=INTEGER},
+      </if>
+      <if test="isnumber != null">
+        isnumber = #{isnumber,jdbcType=INTEGER},
+      </if>
+      <if test="number != null">
+        number = #{number,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shitouren.core.autogenerate.bean.Pullnew">
+    update pullnew
+    set openactivity = #{openactivity,jdbcType=INTEGER},
+      openactivitycreattime = #{openactivitycreattime,jdbcType=TIMESTAMP},
+      openactivityendtime = #{openactivityendtime,jdbcType=TIMESTAMP},
+      openblind = #{openblind,jdbcType=INTEGER},
+      blindboxid = #{blindboxid,jdbcType=INTEGER},
+      realnameblind = #{realnameblind,jdbcType=INTEGER},
+      ladderinfo = #{ladderinfo,jdbcType=VARCHAR},
+      opencollection = #{opencollection,jdbcType=INTEGER},
+      collectionid = #{collectionid,jdbcType=INTEGER},
+      realnamecollection = #{realnamecollection,jdbcType=INTEGER},
+      colLadderinfo = #{colladderinfo,jdbcType=VARCHAR},
+      newsend = #{newsend,jdbcType=INTEGER},
+      isrealname = #{isrealname,jdbcType=INTEGER},
+      isendblind = #{isendblind,jdbcType=INTEGER},
+      newblindid = #{newblindid,jdbcType=INTEGER},
+      isendcol = #{isendcol,jdbcType=INTEGER},
+      newcollectionid = #{newcollectionid,jdbcType=INTEGER},
+      isnumber = #{isnumber,jdbcType=INTEGER},
+      number = #{number,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <insert id="insertBatchSelective" parameterType="java.util.List">
+    insert into pullnew
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="list[0].id!=null">
+        id,
+      </if>
+      <if test="list[0].openactivity!=null">
+        openactivity,
+      </if>
+      <if test="list[0].openactivitycreattime!=null">
+        openactivitycreattime,
+      </if>
+      <if test="list[0].openactivityendtime!=null">
+        openactivityendtime,
+      </if>
+      <if test="list[0].openblind!=null">
+        openblind,
+      </if>
+      <if test="list[0].blindboxid!=null">
+        blindboxid,
+      </if>
+      <if test="list[0].realnameblind!=null">
+        realnameblind,
+      </if>
+      <if test="list[0].ladderinfo!=null">
+        ladderinfo,
+      </if>
+      <if test="list[0].opencollection!=null">
+        opencollection,
+      </if>
+      <if test="list[0].collectionid!=null">
+        collectionid,
+      </if>
+      <if test="list[0].realnamecollection!=null">
+        realnamecollection,
+      </if>
+      <if test="list[0].colladderinfo!=null">
+        colLadderinfo,
+      </if>
+      <if test="list[0].newsend!=null">
+        newsend,
+      </if>
+      <if test="list[0].isrealname!=null">
+        isrealname,
+      </if>
+      <if test="list[0].isendblind!=null">
+        isendblind,
+      </if>
+      <if test="list[0].newblindid!=null">
+        newblindid,
+      </if>
+      <if test="list[0].isendcol!=null">
+        isendcol,
+      </if>
+      <if test="list[0].newcollectionid!=null">
+        newcollectionid,
+      </if>
+      <if test="list[0].isnumber!=null">
+        isnumber,
+      </if>
+      <if test="list[0].number!=null">
+        number,
+      </if>
+    </trim>
+     values 
+    <foreach collection="list" index="index" item="item" separator=",">
+      <trim prefix=" (" suffix=")" suffixOverrides=",">
+        <if test="item.id!=null">
+          #{item.id,jdbcType=INTEGER},
+        </if>
+        <if test="item.openactivity!=null">
+          #{item.openactivity,jdbcType=INTEGER},
+        </if>
+        <if test="item.openactivitycreattime!=null">
+          #{item.openactivitycreattime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.openactivityendtime!=null">
+          #{item.openactivityendtime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.openblind!=null">
+          #{item.openblind,jdbcType=INTEGER},
+        </if>
+        <if test="item.blindboxid!=null">
+          #{item.blindboxid,jdbcType=INTEGER},
+        </if>
+        <if test="item.realnameblind!=null">
+          #{item.realnameblind,jdbcType=INTEGER},
+        </if>
+        <if test="item.ladderinfo!=null">
+          #{item.ladderinfo,jdbcType=VARCHAR},
+        </if>
+        <if test="item.opencollection!=null">
+          #{item.opencollection,jdbcType=INTEGER},
+        </if>
+        <if test="item.collectionid!=null">
+          #{item.collectionid,jdbcType=INTEGER},
+        </if>
+        <if test="item.realnamecollection!=null">
+          #{item.realnamecollection,jdbcType=INTEGER},
+        </if>
+        <if test="item.colladderinfo!=null">
+          #{item.colladderinfo,jdbcType=VARCHAR},
+        </if>
+        <if test="item.newsend!=null">
+          #{item.newsend,jdbcType=INTEGER},
+        </if>
+        <if test="item.isrealname!=null">
+          #{item.isrealname,jdbcType=INTEGER},
+        </if>
+        <if test="item.isendblind!=null">
+          #{item.isendblind,jdbcType=INTEGER},
+        </if>
+        <if test="item.newblindid!=null">
+          #{item.newblindid,jdbcType=INTEGER},
+        </if>
+        <if test="item.isendcol!=null">
+          #{item.isendcol,jdbcType=INTEGER},
+        </if>
+        <if test="item.newcollectionid!=null">
+          #{item.newcollectionid,jdbcType=INTEGER},
+        </if>
+        <if test="item.isnumber!=null">
+          #{item.isnumber,jdbcType=INTEGER},
+        </if>
+        <if test="item.number!=null">
+          #{item.number,jdbcType=INTEGER},
+        </if>
+      </trim>
+    </foreach>
+  </insert>
+  <update id="updateBatchByPrimaryKeySelective" parameterType="java.util.List">
+    <foreach collection="list" index="index" item="item" separator=";">
+      update pullnew
+      <set>
+        <if test="item.openactivity!=null">
+          openactivity=#{item.openactivity,jdbcType=INTEGER},
+        </if>
+        <if test="item.openactivitycreattime!=null">
+          openactivitycreattime=#{item.openactivitycreattime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.openactivityendtime!=null">
+          openactivityendtime=#{item.openactivityendtime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.openblind!=null">
+          openblind=#{item.openblind,jdbcType=INTEGER},
+        </if>
+        <if test="item.blindboxid!=null">
+          blindboxid=#{item.blindboxid,jdbcType=INTEGER},
+        </if>
+        <if test="item.realnameblind!=null">
+          realnameblind=#{item.realnameblind,jdbcType=INTEGER},
+        </if>
+        <if test="item.ladderinfo!=null">
+          ladderinfo=#{item.ladderinfo,jdbcType=VARCHAR},
+        </if>
+        <if test="item.opencollection!=null">
+          opencollection=#{item.opencollection,jdbcType=INTEGER},
+        </if>
+        <if test="item.collectionid!=null">
+          collectionid=#{item.collectionid,jdbcType=INTEGER},
+        </if>
+        <if test="item.realnamecollection!=null">
+          realnamecollection=#{item.realnamecollection,jdbcType=INTEGER},
+        </if>
+        <if test="item.colladderinfo!=null">
+          colLadderinfo=#{item.colladderinfo,jdbcType=VARCHAR},
+        </if>
+        <if test="item.newsend!=null">
+          newsend=#{item.newsend,jdbcType=INTEGER},
+        </if>
+        <if test="item.isrealname!=null">
+          isrealname=#{item.isrealname,jdbcType=INTEGER},
+        </if>
+        <if test="item.isendblind!=null">
+          isendblind=#{item.isendblind,jdbcType=INTEGER},
+        </if>
+        <if test="item.newblindid!=null">
+          newblindid=#{item.newblindid,jdbcType=INTEGER},
+        </if>
+        <if test="item.isendcol!=null">
+          isendcol=#{item.isendcol,jdbcType=INTEGER},
+        </if>
+        <if test="item.newcollectionid!=null">
+          newcollectionid=#{item.newcollectionid,jdbcType=INTEGER},
+        </if>
+        <if test="item.isnumber!=null">
+          isnumber=#{item.isnumber,jdbcType=INTEGER},
+        </if>
+        <if test="item.number!=null">
+          number=#{item.number,jdbcType=INTEGER},
+        </if>
+      </set>
+      where 
+      id = #{item.id,jdbcType=INTEGER}
+    </foreach>
+  </update>
+</mapper>

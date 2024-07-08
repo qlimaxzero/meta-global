@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shitouren.core.autogenerate.dao.IssueDao">
+    <resultMap id="BaseResultMap" type="com.shitouren.core.autogenerate.bean.Issue">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="istype" jdbcType="INTEGER" property="istype"/>
+        <result column="collid" jdbcType="INTEGER" property="collid"/>
+        <result column="ginsengtype" jdbcType="INTEGER" property="ginsengtype"/>
+        <result column="releasetime" jdbcType="TIMESTAMP" property="releasetime"/>
+        <result column="endtime" jdbcType="TIMESTAMP" property="endtime"/>
+        <result column="presale" jdbcType="INTEGER" property="presale"/>
+        <result column="sold" jdbcType="INTEGER" property="sold"/>
+        <result column="limitcount" jdbcType="INTEGER" property="limitcount"/>
+        <result column="ginscount" jdbcType="INTEGER" property="ginscount"/>
+        <result column="type" jdbcType="INTEGER" property="type"/>
+        <result column="checkout" jdbcType="INTEGER" property="checkout"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+        id,
+        istype,
+        collid,
+        ginsengtype,
+        releasetime,
+        endtime,
+        presale,
+        sold,
+        limitcount,
+        ginscount,
+        type,
+        checkout
+    </sql>
+    <select id="selectByExample" parameterType="com.shitouren.core.autogenerate.bean.IssueExample"
+            resultMap="BaseResultMap">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from issue
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+        <if test="startRow != null">
+            limit #{startRow} , #{pageSize}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from issue
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete
+        from issue
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <delete id="deleteByExample" parameterType="com.shitouren.core.autogenerate.bean.IssueExample">
+        delete
+        from issue
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.shitouren.core.autogenerate.bean.Issue"
+            useGeneratedKeys="true">
+        insert into issue (istype, collid, ginsengtype,
+                           releasetime, endtime, presale,
+                           sold, limitcount, ginscount,
+                           type, checkout)
+        values (#{istype,jdbcType=INTEGER}, #{collid,jdbcType=INTEGER}, #{ginsengtype,jdbcType=INTEGER},
+                #{releasetime,jdbcType=TIMESTAMP}, #{endtime,jdbcType=TIMESTAMP}, #{presale,jdbcType=INTEGER},
+                #{sold,jdbcType=INTEGER}, #{limitcount,jdbcType=INTEGER}, #{ginscount,jdbcType=INTEGER},
+                #{type,jdbcType=INTEGER}, #{checkout,jdbcType=INTEGER})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id"
+            parameterType="com.shitouren.core.autogenerate.bean.Issue" useGeneratedKeys="true">
+        insert into issue
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="istype != null">
+                istype,
+            </if>
+            <if test="collid != null">
+                collid,
+            </if>
+            <if test="ginsengtype != null">
+                ginsengtype,
+            </if>
+            <if test="releasetime != null">
+                releasetime,
+            </if>
+            <if test="endtime != null">
+                endtime,
+            </if>
+            <if test="presale != null">
+                presale,
+            </if>
+            <if test="sold != null">
+                sold,
+            </if>
+            <if test="limitcount != null">
+                limitcount,
+            </if>
+            <if test="ginscount != null">
+                ginscount,
+            </if>
+            <if test="type != null">
+                type,
+            </if>
+            <if test="checkout != null">
+                checkout,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="istype != null">
+                #{istype,jdbcType=INTEGER},
+            </if>
+            <if test="collid != null">
+                #{collid,jdbcType=INTEGER},
+            </if>
+            <if test="ginsengtype != null">
+                #{ginsengtype,jdbcType=INTEGER},
+            </if>
+            <if test="releasetime != null">
+                #{releasetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="endtime != null">
+                #{endtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="presale != null">
+                #{presale,jdbcType=INTEGER},
+            </if>
+            <if test="sold != null">
+                #{sold,jdbcType=INTEGER},
+            </if>
+            <if test="limitcount != null">
+                #{limitcount,jdbcType=INTEGER},
+            </if>
+            <if test="ginscount != null">
+                #{ginscount,jdbcType=INTEGER},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=INTEGER},
+            </if>
+            <if test="checkout != null">
+                #{checkout,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.shitouren.core.autogenerate.bean.IssueExample"
+            resultType="java.lang.Long">
+        select count(*)
+        from issue
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update issue
+        <set>
+            <if test="record.id != null">
+                id = #{record.id,jdbcType=INTEGER},
+            </if>
+            <if test="record.istype != null">
+                istype = #{record.istype,jdbcType=INTEGER},
+            </if>
+            <if test="record.collid != null">
+                collid = #{record.collid,jdbcType=INTEGER},
+            </if>
+            <if test="record.ginsengtype != null">
+                ginsengtype = #{record.ginsengtype,jdbcType=INTEGER},
+            </if>
+            <if test="record.releasetime != null">
+                releasetime = #{record.releasetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.endtime != null">
+                endtime = #{record.endtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.presale != null">
+                presale = #{record.presale,jdbcType=INTEGER},
+            </if>
+            <if test="record.sold != null">
+                sold = #{record.sold,jdbcType=INTEGER},
+            </if>
+            <if test="record.limitcount != null">
+                limitcount = #{record.limitcount,jdbcType=INTEGER},
+            </if>
+            <if test="record.ginscount != null">
+                ginscount = #{record.ginscount,jdbcType=INTEGER},
+            </if>
+            <if test="record.type != null">
+                type = #{record.type,jdbcType=INTEGER},
+            </if>
+            <if test="record.checkout != null">
+                checkout = #{record.checkout,jdbcType=INTEGER},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update issue
+        set id          = #{record.id,jdbcType=INTEGER},
+            istype      = #{record.istype,jdbcType=INTEGER},
+            collid      = #{record.collid,jdbcType=INTEGER},
+            ginsengtype = #{record.ginsengtype,jdbcType=INTEGER},
+            releasetime = #{record.releasetime,jdbcType=TIMESTAMP},
+            endtime     = #{record.endtime,jdbcType=TIMESTAMP},
+            presale     = #{record.presale,jdbcType=INTEGER},
+            sold        = #{record.sold,jdbcType=INTEGER},
+            limitcount  = #{record.limitcount,jdbcType=INTEGER},
+            ginscount   = #{record.ginscount,jdbcType=INTEGER},
+            type        = #{record.type,jdbcType=INTEGER},
+            checkout    = #{record.checkout,jdbcType=INTEGER}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.shitouren.core.autogenerate.bean.Issue">
+        update issue
+        <set>
+            <if test="istype != null">
+                istype = #{istype,jdbcType=INTEGER},
+            </if>
+            <if test="collid != null">
+                collid = #{collid,jdbcType=INTEGER},
+            </if>
+            <if test="ginsengtype != null">
+                ginsengtype = #{ginsengtype,jdbcType=INTEGER},
+            </if>
+            <if test="releasetime != null">
+                releasetime = #{releasetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="endtime != null">
+                endtime = #{endtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="presale != null">
+                presale = #{presale,jdbcType=INTEGER},
+            </if>
+            <if test="sold != null">
+                sold = #{sold,jdbcType=INTEGER},
+            </if>
+            <if test="limitcount != null">
+                limitcount = #{limitcount,jdbcType=INTEGER},
+            </if>
+            <if test="ginscount != null">
+                ginscount = #{ginscount,jdbcType=INTEGER},
+            </if>
+            <if test="type != null">
+                type = #{type,jdbcType=INTEGER},
+            </if>
+            <if test="checkout != null">
+                checkout = #{checkout,jdbcType=INTEGER},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <update id="increaseSoldByPrimaryKey" parameterType="java.lang.Integer">
+        UPDATE issue
+        SET sold = issue.sold + #{count,jdbcType=INTEGER}
+        WHERE id = #{id,jdbcType=INTEGER}
+        <if test="count &lt; 0">
+            and sold &gt; 0
+        </if>
+        <if test="count &gt; 0">
+            and sold &lt; presale
+        </if>
+    </update>
+
+    <update id="updateSoldByCAS">
+        UPDATE issue
+        SET sold = #{sold}
+        WHERE id = #{id} and sold = #{oldSold}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="com.shitouren.core.autogenerate.bean.Issue">
+        update issue
+        set istype      = #{istype,jdbcType=INTEGER},
+            collid      = #{collid,jdbcType=INTEGER},
+            ginsengtype = #{ginsengtype,jdbcType=INTEGER},
+            releasetime = #{releasetime,jdbcType=TIMESTAMP},
+            endtime     = #{endtime,jdbcType=TIMESTAMP},
+            presale     = #{presale,jdbcType=INTEGER},
+            sold        = #{sold,jdbcType=INTEGER},
+            limitcount  = #{limitcount,jdbcType=INTEGER},
+            ginscount   = #{ginscount,jdbcType=INTEGER},
+            type        = #{type,jdbcType=INTEGER},
+            checkout    = #{checkout,jdbcType=INTEGER}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <insert id="insertBatchSelective" parameterType="java.util.List">
+        insert into issue
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="list[0].id != null">
+                id,
+            </if>
+            <if test="list[0].istype != null">
+                istype,
+            </if>
+            <if test="list[0].collid != null">
+                collid,
+            </if>
+            <if test="list[0].ginsengtype != null">
+                ginsengtype,
+            </if>
+            <if test="list[0].releasetime != null">
+                releasetime,
+            </if>
+            <if test="list[0].endtime != null">
+                endtime,
+            </if>
+            <if test="list[0].presale != null">
+                presale,
+            </if>
+            <if test="list[0].sold != null">
+                sold,
+            </if>
+            <if test="list[0].limitcount != null">
+                limitcount,
+            </if>
+            <if test="list[0].ginscount != null">
+                ginscount,
+            </if>
+            <if test="list[0].type != null">
+                type,
+            </if>
+            <if test="list[0].checkout != null">
+                checkout,
+            </if>
+        </trim>
+        values
+        <foreach collection="list" index="index" item="item" separator=",">
+            <trim prefix=" (" suffix=")" suffixOverrides=",">
+                <if test="item.id != null">
+                    #{item.id,jdbcType=INTEGER},
+                </if>
+                <if test="item.istype != null">
+                    #{item.istype,jdbcType=INTEGER},
+                </if>
+                <if test="item.collid != null">
+                    #{item.collid,jdbcType=INTEGER},
+                </if>
+                <if test="item.ginsengtype != null">
+                    #{item.ginsengtype,jdbcType=INTEGER},
+                </if>
+                <if test="item.releasetime != null">
+                    #{item.releasetime,jdbcType=TIMESTAMP},
+                </if>
+                <if test="item.endtime != null">
+                    #{item.endtime,jdbcType=TIMESTAMP},
+                </if>
+                <if test="item.presale != null">
+                    #{item.presale,jdbcType=INTEGER},
+                </if>
+                <if test="item.sold != null">
+                    #{item.sold,jdbcType=INTEGER},
+                </if>
+                <if test="item.limitcount != null">
+                    #{item.limitcount,jdbcType=INTEGER},
+                </if>
+                <if test="item.ginscount != null">
+                    #{item.ginscount,jdbcType=INTEGER},
+                </if>
+                <if test="item.type != null">
+                    #{item.type,jdbcType=INTEGER},
+                </if>
+                <if test="item.checkout != null">
+                    #{item.checkout,jdbcType=INTEGER},
+                </if>
+            </trim>
+        </foreach>
+    </insert>
+    <update id="updateBatchByPrimaryKeySelective" parameterType="java.util.List">
+        <foreach collection="list" index="index" item="item" separator=";">
+            update issue
+            <set>
+                <if test="item.istype != null">
+                    istype=#{item.istype,jdbcType=INTEGER},
+                </if>
+                <if test="item.collid != null">
+                    collid=#{item.collid,jdbcType=INTEGER},
+                </if>
+                <if test="item.ginsengtype != null">
+                    ginsengtype=#{item.ginsengtype,jdbcType=INTEGER},
+                </if>
+                <if test="item.releasetime != null">
+                    releasetime=#{item.releasetime,jdbcType=TIMESTAMP},
+                </if>
+                <if test="item.endtime != null">
+                    endtime=#{item.endtime,jdbcType=TIMESTAMP},
+                </if>
+                <if test="item.presale != null">
+                    presale=#{item.presale,jdbcType=INTEGER},
+                </if>
+                <if test="item.sold != null">
+                    sold=#{item.sold,jdbcType=INTEGER},
+                </if>
+                <if test="item.limitcount != null">
+                    limitcount=#{item.limitcount,jdbcType=INTEGER},
+                </if>
+                <if test="item.ginscount != null">
+                    ginscount=#{item.ginscount,jdbcType=INTEGER},
+                </if>
+                <if test="item.type != null">
+                    type=#{item.type,jdbcType=INTEGER},
+                </if>
+                <if test="item.checkout != null">
+                    checkout=#{item.checkout,jdbcType=INTEGER},
+                </if>
+            </set>
+            where id = #{item.id,jdbcType=INTEGER}
+        </foreach>
+    </update>
+</mapper>

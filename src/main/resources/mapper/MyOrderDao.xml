@@ -1,0 +1,641 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shitouren.core.autogenerate.dao.MyOrderDao">
+  <resultMap id="BaseResultMap" type="com.shitouren.core.autogenerate.bean.MyOrder">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="orderno" jdbcType="VARCHAR" property="orderno" />
+    <result column="userid" jdbcType="INTEGER" property="userid" />
+    <result column="collid" jdbcType="INTEGER" property="collid" />
+    <result column="istype" jdbcType="INTEGER" property="istype" />
+    <result column="ginsengtype" jdbcType="INTEGER" property="ginsengtype" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="ordertype" jdbcType="INTEGER" property="ordertype" />
+    <result column="grants" jdbcType="INTEGER" property="grants" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="endtime" jdbcType="TIMESTAMP" property="endtime" />
+    <result column="paytype" jdbcType="INTEGER" property="paytype" />
+    <result column="cyid" jdbcType="INTEGER" property="cyid" />
+    <result column="buycard" jdbcType="INTEGER" property="buycard" />
+    <result column="yuanyuzhouid" jdbcType="INTEGER" property="yuanyuzhouid" />
+    <result column="issue_id" jdbcType="INTEGER" property="issueId" />
+    <result column="out_order_no" jdbcType="VARCHAR" property="outOrderNo" />
+    <result column="txid" jdbcType="VARCHAR" property="txid" />
+    <result column="success_time" jdbcType="TIMESTAMP" property="successTime" />
+    <result column="from_addr" jdbcType="VARCHAR" property="fromAddr" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, orderno, userid, collid, istype, ginsengtype, price, ordertype, grants, createtime, 
+    endtime, paytype, cyid, buycard, yuanyuzhouid, issue_id, out_order_no, txid, success_time, 
+    from_addr
+  </sql>
+  <select id="selectByExample" parameterType="com.shitouren.core.autogenerate.bean.MyOrderExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from my_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="startRow != null">
+      limit #{startRow} , #{pageSize}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from my_order
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from my_order
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shitouren.core.autogenerate.bean.MyOrderExample">
+    delete from my_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.shitouren.core.autogenerate.bean.MyOrder" useGeneratedKeys="true">
+    insert into my_order (orderno, userid, collid, 
+      istype, ginsengtype, price, 
+      ordertype, grants, createtime, 
+      endtime, paytype, cyid, 
+      buycard, yuanyuzhouid, issue_id, 
+      out_order_no, txid, success_time, 
+      from_addr)
+    values (#{orderno,jdbcType=VARCHAR}, #{userid,jdbcType=INTEGER}, #{collid,jdbcType=INTEGER}, 
+      #{istype,jdbcType=INTEGER}, #{ginsengtype,jdbcType=INTEGER}, #{price,jdbcType=DECIMAL}, 
+      #{ordertype,jdbcType=INTEGER}, #{grants,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{endtime,jdbcType=TIMESTAMP}, #{paytype,jdbcType=INTEGER}, #{cyid,jdbcType=INTEGER}, 
+      #{buycard,jdbcType=INTEGER}, #{yuanyuzhouid,jdbcType=INTEGER}, #{issueId,jdbcType=INTEGER}, 
+      #{outOrderNo,jdbcType=VARCHAR}, #{txid,jdbcType=VARCHAR}, #{successTime,jdbcType=TIMESTAMP}, 
+      #{fromAddr,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.shitouren.core.autogenerate.bean.MyOrder" useGeneratedKeys="true">
+    insert into my_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderno != null">
+        orderno,
+      </if>
+      <if test="userid != null">
+        userid,
+      </if>
+      <if test="collid != null">
+        collid,
+      </if>
+      <if test="istype != null">
+        istype,
+      </if>
+      <if test="ginsengtype != null">
+        ginsengtype,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="ordertype != null">
+        ordertype,
+      </if>
+      <if test="grants != null">
+        grants,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+      <if test="endtime != null">
+        endtime,
+      </if>
+      <if test="paytype != null">
+        paytype,
+      </if>
+      <if test="cyid != null">
+        cyid,
+      </if>
+      <if test="buycard != null">
+        buycard,
+      </if>
+      <if test="yuanyuzhouid != null">
+        yuanyuzhouid,
+      </if>
+      <if test="issueId != null">
+        issue_id,
+      </if>
+      <if test="outOrderNo != null">
+        out_order_no,
+      </if>
+      <if test="txid != null">
+        txid,
+      </if>
+      <if test="successTime != null">
+        success_time,
+      </if>
+      <if test="fromAddr != null">
+        from_addr,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderno != null">
+        #{orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="collid != null">
+        #{collid,jdbcType=INTEGER},
+      </if>
+      <if test="istype != null">
+        #{istype,jdbcType=INTEGER},
+      </if>
+      <if test="ginsengtype != null">
+        #{ginsengtype,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="ordertype != null">
+        #{ordertype,jdbcType=INTEGER},
+      </if>
+      <if test="grants != null">
+        #{grants,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endtime != null">
+        #{endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="paytype != null">
+        #{paytype,jdbcType=INTEGER},
+      </if>
+      <if test="cyid != null">
+        #{cyid,jdbcType=INTEGER},
+      </if>
+      <if test="buycard != null">
+        #{buycard,jdbcType=INTEGER},
+      </if>
+      <if test="yuanyuzhouid != null">
+        #{yuanyuzhouid,jdbcType=INTEGER},
+      </if>
+      <if test="issueId != null">
+        #{issueId,jdbcType=INTEGER},
+      </if>
+      <if test="outOrderNo != null">
+        #{outOrderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="txid != null">
+        #{txid,jdbcType=VARCHAR},
+      </if>
+      <if test="successTime != null">
+        #{successTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fromAddr != null">
+        #{fromAddr,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shitouren.core.autogenerate.bean.MyOrderExample" resultType="java.lang.Long">
+    select count(*) from my_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update my_order
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderno != null">
+        orderno = #{record.orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userid != null">
+        userid = #{record.userid,jdbcType=INTEGER},
+      </if>
+      <if test="record.collid != null">
+        collid = #{record.collid,jdbcType=INTEGER},
+      </if>
+      <if test="record.istype != null">
+        istype = #{record.istype,jdbcType=INTEGER},
+      </if>
+      <if test="record.ginsengtype != null">
+        ginsengtype = #{record.ginsengtype,jdbcType=INTEGER},
+      </if>
+      <if test="record.price != null">
+        price = #{record.price,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ordertype != null">
+        ordertype = #{record.ordertype,jdbcType=INTEGER},
+      </if>
+      <if test="record.grants != null">
+        grants = #{record.grants,jdbcType=INTEGER},
+      </if>
+      <if test="record.createtime != null">
+        createtime = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.endtime != null">
+        endtime = #{record.endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.paytype != null">
+        paytype = #{record.paytype,jdbcType=INTEGER},
+      </if>
+      <if test="record.cyid != null">
+        cyid = #{record.cyid,jdbcType=INTEGER},
+      </if>
+      <if test="record.buycard != null">
+        buycard = #{record.buycard,jdbcType=INTEGER},
+      </if>
+      <if test="record.yuanyuzhouid != null">
+        yuanyuzhouid = #{record.yuanyuzhouid,jdbcType=INTEGER},
+      </if>
+      <if test="record.issueId != null">
+        issue_id = #{record.issueId,jdbcType=INTEGER},
+      </if>
+      <if test="record.outOrderNo != null">
+        out_order_no = #{record.outOrderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.txid != null">
+        txid = #{record.txid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.successTime != null">
+        success_time = #{record.successTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.fromAddr != null">
+        from_addr = #{record.fromAddr,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update my_order
+    set id = #{record.id,jdbcType=INTEGER},
+      orderno = #{record.orderno,jdbcType=VARCHAR},
+      userid = #{record.userid,jdbcType=INTEGER},
+      collid = #{record.collid,jdbcType=INTEGER},
+      istype = #{record.istype,jdbcType=INTEGER},
+      ginsengtype = #{record.ginsengtype,jdbcType=INTEGER},
+      price = #{record.price,jdbcType=DECIMAL},
+      ordertype = #{record.ordertype,jdbcType=INTEGER},
+      grants = #{record.grants,jdbcType=INTEGER},
+      createtime = #{record.createtime,jdbcType=TIMESTAMP},
+      endtime = #{record.endtime,jdbcType=TIMESTAMP},
+      paytype = #{record.paytype,jdbcType=INTEGER},
+      cyid = #{record.cyid,jdbcType=INTEGER},
+      buycard = #{record.buycard,jdbcType=INTEGER},
+      yuanyuzhouid = #{record.yuanyuzhouid,jdbcType=INTEGER},
+      issue_id = #{record.issueId,jdbcType=INTEGER},
+      out_order_no = #{record.outOrderNo,jdbcType=VARCHAR},
+      txid = #{record.txid,jdbcType=VARCHAR},
+      success_time = #{record.successTime,jdbcType=TIMESTAMP},
+      from_addr = #{record.fromAddr,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shitouren.core.autogenerate.bean.MyOrder">
+    update my_order
+    <set>
+      <if test="orderno != null">
+        orderno = #{orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        userid = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="collid != null">
+        collid = #{collid,jdbcType=INTEGER},
+      </if>
+      <if test="istype != null">
+        istype = #{istype,jdbcType=INTEGER},
+      </if>
+      <if test="ginsengtype != null">
+        ginsengtype = #{ginsengtype,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="ordertype != null">
+        ordertype = #{ordertype,jdbcType=INTEGER},
+      </if>
+      <if test="grants != null">
+        grants = #{grants,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endtime != null">
+        endtime = #{endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="paytype != null">
+        paytype = #{paytype,jdbcType=INTEGER},
+      </if>
+      <if test="cyid != null">
+        cyid = #{cyid,jdbcType=INTEGER},
+      </if>
+      <if test="buycard != null">
+        buycard = #{buycard,jdbcType=INTEGER},
+      </if>
+      <if test="yuanyuzhouid != null">
+        yuanyuzhouid = #{yuanyuzhouid,jdbcType=INTEGER},
+      </if>
+      <if test="issueId != null">
+        issue_id = #{issueId,jdbcType=INTEGER},
+      </if>
+      <if test="outOrderNo != null">
+        out_order_no = #{outOrderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="txid != null">
+        txid = #{txid,jdbcType=VARCHAR},
+      </if>
+      <if test="successTime != null">
+        success_time = #{successTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fromAddr != null">
+        from_addr = #{fromAddr,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shitouren.core.autogenerate.bean.MyOrder">
+    update my_order
+    set orderno = #{orderno,jdbcType=VARCHAR},
+      userid = #{userid,jdbcType=INTEGER},
+      collid = #{collid,jdbcType=INTEGER},
+      istype = #{istype,jdbcType=INTEGER},
+      ginsengtype = #{ginsengtype,jdbcType=INTEGER},
+      price = #{price,jdbcType=DECIMAL},
+      ordertype = #{ordertype,jdbcType=INTEGER},
+      grants = #{grants,jdbcType=INTEGER},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      endtime = #{endtime,jdbcType=TIMESTAMP},
+      paytype = #{paytype,jdbcType=INTEGER},
+      cyid = #{cyid,jdbcType=INTEGER},
+      buycard = #{buycard,jdbcType=INTEGER},
+      yuanyuzhouid = #{yuanyuzhouid,jdbcType=INTEGER},
+      issue_id = #{issueId,jdbcType=INTEGER},
+      out_order_no = #{outOrderNo,jdbcType=VARCHAR},
+      txid = #{txid,jdbcType=VARCHAR},
+      success_time = #{successTime,jdbcType=TIMESTAMP},
+      from_addr = #{fromAddr,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <insert id="insertBatchSelective" parameterType="java.util.List">
+    insert into my_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="list[0].id!=null">
+        id,
+      </if>
+      <if test="list[0].orderno!=null">
+        orderno,
+      </if>
+      <if test="list[0].userid!=null">
+        userid,
+      </if>
+      <if test="list[0].collid!=null">
+        collid,
+      </if>
+      <if test="list[0].istype!=null">
+        istype,
+      </if>
+      <if test="list[0].ginsengtype!=null">
+        ginsengtype,
+      </if>
+      <if test="list[0].price!=null">
+        price,
+      </if>
+      <if test="list[0].ordertype!=null">
+        ordertype,
+      </if>
+      <if test="list[0].grants!=null">
+        grants,
+      </if>
+      <if test="list[0].createtime!=null">
+        createtime,
+      </if>
+      <if test="list[0].endtime!=null">
+        endtime,
+      </if>
+      <if test="list[0].paytype!=null">
+        paytype,
+      </if>
+      <if test="list[0].cyid!=null">
+        cyid,
+      </if>
+      <if test="list[0].buycard!=null">
+        buycard,
+      </if>
+      <if test="list[0].yuanyuzhouid!=null">
+        yuanyuzhouid,
+      </if>
+      <if test="list[0].issueId!=null">
+        issue_id,
+      </if>
+      <if test="list[0].outOrderNo!=null">
+        out_order_no,
+      </if>
+      <if test="list[0].txid!=null">
+        txid,
+      </if>
+      <if test="list[0].successTime!=null">
+        success_time,
+      </if>
+      <if test="list[0].fromAddr!=null">
+        from_addr,
+      </if>
+    </trim>
+     values 
+    <foreach collection="list" index="index" item="item" separator=",">
+      <trim prefix=" (" suffix=")" suffixOverrides=",">
+        <if test="item.id!=null">
+          #{item.id,jdbcType=INTEGER},
+        </if>
+        <if test="item.orderno!=null">
+          #{item.orderno,jdbcType=VARCHAR},
+        </if>
+        <if test="item.userid!=null">
+          #{item.userid,jdbcType=INTEGER},
+        </if>
+        <if test="item.collid!=null">
+          #{item.collid,jdbcType=INTEGER},
+        </if>
+        <if test="item.istype!=null">
+          #{item.istype,jdbcType=INTEGER},
+        </if>
+        <if test="item.ginsengtype!=null">
+          #{item.ginsengtype,jdbcType=INTEGER},
+        </if>
+        <if test="item.price!=null">
+          #{item.price,jdbcType=DECIMAL},
+        </if>
+        <if test="item.ordertype!=null">
+          #{item.ordertype,jdbcType=INTEGER},
+        </if>
+        <if test="item.grants!=null">
+          #{item.grants,jdbcType=INTEGER},
+        </if>
+        <if test="item.createtime!=null">
+          #{item.createtime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.endtime!=null">
+          #{item.endtime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.paytype!=null">
+          #{item.paytype,jdbcType=INTEGER},
+        </if>
+        <if test="item.cyid!=null">
+          #{item.cyid,jdbcType=INTEGER},
+        </if>
+        <if test="item.buycard!=null">
+          #{item.buycard,jdbcType=INTEGER},
+        </if>
+        <if test="item.yuanyuzhouid!=null">
+          #{item.yuanyuzhouid,jdbcType=INTEGER},
+        </if>
+        <if test="item.issueId!=null">
+          #{item.issueId,jdbcType=INTEGER},
+        </if>
+        <if test="item.outOrderNo!=null">
+          #{item.outOrderNo,jdbcType=VARCHAR},
+        </if>
+        <if test="item.txid!=null">
+          #{item.txid,jdbcType=VARCHAR},
+        </if>
+        <if test="item.successTime!=null">
+          #{item.successTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.fromAddr!=null">
+          #{item.fromAddr,jdbcType=VARCHAR},
+        </if>
+      </trim>
+    </foreach>
+  </insert>
+  <update id="updateBatchByPrimaryKeySelective" parameterType="java.util.List">
+    <foreach collection="list" index="index" item="item" separator=";">
+      update my_order
+      <set>
+        <if test="item.orderno!=null">
+          orderno=#{item.orderno,jdbcType=VARCHAR},
+        </if>
+        <if test="item.userid!=null">
+          userid=#{item.userid,jdbcType=INTEGER},
+        </if>
+        <if test="item.collid!=null">
+          collid=#{item.collid,jdbcType=INTEGER},
+        </if>
+        <if test="item.istype!=null">
+          istype=#{item.istype,jdbcType=INTEGER},
+        </if>
+        <if test="item.ginsengtype!=null">
+          ginsengtype=#{item.ginsengtype,jdbcType=INTEGER},
+        </if>
+        <if test="item.price!=null">
+          price=#{item.price,jdbcType=DECIMAL},
+        </if>
+        <if test="item.ordertype!=null">
+          ordertype=#{item.ordertype,jdbcType=INTEGER},
+        </if>
+        <if test="item.grants!=null">
+          grants=#{item.grants,jdbcType=INTEGER},
+        </if>
+        <if test="item.createtime!=null">
+          createtime=#{item.createtime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.endtime!=null">
+          endtime=#{item.endtime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.paytype!=null">
+          paytype=#{item.paytype,jdbcType=INTEGER},
+        </if>
+        <if test="item.cyid!=null">
+          cyid=#{item.cyid,jdbcType=INTEGER},
+        </if>
+        <if test="item.buycard!=null">
+          buycard=#{item.buycard,jdbcType=INTEGER},
+        </if>
+        <if test="item.yuanyuzhouid!=null">
+          yuanyuzhouid=#{item.yuanyuzhouid,jdbcType=INTEGER},
+        </if>
+        <if test="item.issueId!=null">
+          issue_id=#{item.issueId,jdbcType=INTEGER},
+        </if>
+        <if test="item.outOrderNo!=null">
+          out_order_no=#{item.outOrderNo,jdbcType=VARCHAR},
+        </if>
+        <if test="item.txid!=null">
+          txid=#{item.txid,jdbcType=VARCHAR},
+        </if>
+        <if test="item.successTime!=null">
+          success_time=#{item.successTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.fromAddr!=null">
+          from_addr=#{item.fromAddr,jdbcType=VARCHAR},
+        </if>
+      </set>
+      where 
+      id = #{item.id,jdbcType=INTEGER}
+    </foreach>
+  </update>
+</mapper>
